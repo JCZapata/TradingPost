@@ -10,12 +10,12 @@
                 <section class="col-md-3 col-sm-6">
                     <article class="product-grid mb-4 mt-4">
                         <div class="product-image">
-                            <img class="pic-1" src="{{Storage::url(Auth::user()->avatar)}}" style="max-width:280px; max-height:200px">
+                            <img class="pic-1" src="{{Storage::url($user->avatar)}}" style="max-width:280px; max-height:200px">
                         </div>
                     </article>
                     <article class='container-fluid p-0 mb-4'>
                       <br><br><br><br><br><br><br><br><br>
-                        <label for="imageLoc">Cambiar imagen</label>
+                        <label for="avatar">Cambiar imagen</label>
                         <input type="file" value="avatar" class='form-control-file' name="avatar" id="avatar">
                     </article>
                 </section>
@@ -42,12 +42,7 @@
                         </dl>
                         <div class='container-fluid p-0'>
                             <a href="{{ route('users.index') }}" class="btn btn-info btn-md">Volver</a>
-                            <a href="#" class="btn btn-info btn-md">Actualizar</a>
-                            <input type="submit" class="btn btn-danger btn-md " value="Eliminar">
-                            <form id='form-delete' class='form-delete' action="{{route('users.destroy',['id' => $user->id])}}" method="post">
-                              @method('delete')
-                              @csrf
-                          </form>
+                            <button class="btn btn-info btn-md">Actualizar</button>
                         </div>
                     </article>
                 </section>

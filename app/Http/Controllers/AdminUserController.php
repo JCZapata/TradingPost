@@ -17,19 +17,6 @@ class AdminUserController extends Controller
          $users = User::orderBy('name')->get();
          return view('admin.users.index', compact('users'));
      }
-
-     /**
-      * Display the specified resource.
-      *
-      * @param  int  $id
-      * @return \Illuminate\Http\Response
-      */
-     public function show($id)
-     {
-         $user = User::find($id);
-         return view('admin.users.show',compact('user'));
-     }
-
      /**
       * Show the form for editing the specified resource.
       *
@@ -55,31 +42,22 @@ class AdminUserController extends Controller
 
          $this->validate($request, [
              "name" => 'required',
-             "genre" => 'required',
-             "avatar" => 'required', "image|dimensions:min_width=580,max_width=610,min_height=390,max_height=410",
          ]);
 
          $user = User::find($id);
 
          $user->name = $request->input("name");
-         $user->genre = $request->input("genre");
-
 
          $path = $request->file('avatar');
-
-
+         //dd($path);
 
          if (!is_null($path)) {
-             $path->storeAs('public/products', 'avatar'.$request->user()->id);
-             $user->avatar = 'storage/products/avatar'.$request->user()->id;
+             $user->avatar = $path ->store('public/avatars');
          }
-
-
 
          $user->save();
 
-
-         return redirect()->route('users.show',['id' => $id]);
+         return redirect()->route('users.edit',['id' => $id]);
      }
 
      /**
@@ -94,5 +72,5 @@ class AdminUserController extends Controller
          $user->delete();
 
          return redirect()->route("users.index");
-     }  
+     }
 }

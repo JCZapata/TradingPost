@@ -27,12 +27,12 @@
 					<td>{{$user->email}}</td>
 					<td>{{$user->created_at}}</td>
 					<td>{{$user->updated_at}}</td>
-					<td class="d-flex p-4">
-						<a href="{{route('users.edit', ['id' => $user->id])}}" class="edit"><i class="fas fa-pencil-alt"></i></a>
-						<form id='{{$user->id}}' class='form-delete margin-left' action="{{route('users.destroy',['id' => $user->id])}}" method="post">
-							@method('DELETE')
-							@csrf
-							<a id='delete-link-{{$user->id}}' href="#" class="delete"><i class="fas fa-trash-alt"></i></a>
+					<td class="d-flex p-2">
+						<a href="{{route('users.edit', ['id' => $user->id])}}" class="edit"><button type="button" class="btn btn-outline-primary"><i class="fas fa-pencil-alt"></i></button></a>
+						<form class='form-delete' action="{{route('users.destroy',['id' => $user->id])}}" method="post">
+						<button class="btn btn-outline-danger"><i class="fas fa-trash-alt"></i></button>
+						@method('delete')
+						@csrf
 						</form>
 					</td>
 				</tr>
