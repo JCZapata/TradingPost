@@ -16,7 +16,7 @@
       </div>
 
       <div class="carousel-item">
-        <a href="#"><img src="img/carousel-2.jpg" class="d-block img-fluid w-100" alt="..."></a>
+        <a href="#"><img src="img/carousel-2.png" class="d-block img-fluid w-100" alt="..."></a>
       </div>
 
       <div class="carousel-item">

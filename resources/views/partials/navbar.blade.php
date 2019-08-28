@@ -1,3 +1,8 @@
+<?php
+use App\Category;
+$categories = Category::all();
+ ?>
+
 <body>
   <nav class="navbar navbar-expand-md navbar-light bg-light shadow-sm">
     <a class="navbar-brand" href="{{ url('/') }}"><img src="{{asset('/img/Trading-Post-logo-small.jpg')}}" alt="logotipo" class="navbar-brand" width="100px" height="75px"></a>
@@ -21,11 +26,9 @@
                     Productos
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#">Vehiculos</a>
-                    <a class="dropdown-item" href="#">Tecnología</a>
-                    <a class="dropdown-item" href="#">Deportes y aire libre</a>
-                    <a class="dropdown-item" href="#">Belleza y cuidado personal</a>
-                    <a class="dropdown-item" href="#">Libros</a>
+                    @foreach ($categories as $category)
+                      <a class="dropdown-item" href="{{$category->id}}">{{$category->name}}</a>
+                    @endforeach
                   </div>
                 </li>
                 <li class="nav-item">

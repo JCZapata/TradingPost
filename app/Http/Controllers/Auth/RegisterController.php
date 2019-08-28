@@ -52,8 +52,17 @@ class RegisterController extends Controller
           'name' => ['required', 'string', 'max:255'],
           'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
           'password' => ['required', 'string', 'min:8', 'confirmed'],
-          'avatar' => ['required'],
+          'avatar' => ['required','image'],
           'confirm' => ['required'],
+        ],[
+          "required" => 'El campo no puede estar vacío',
+          "unique"  => 'Email en uso',
+          "string" => 'El campo no es una cadena de texto',
+          "email" => 'Ingrese un email válido',
+          "confirmed" => 'Las contraseñas no coinciden',
+          "min" => 'La contraseña debe tener más de 8 caracteres',
+          "max" => 'Ha sobrepasado el máximo de caracteres permitidos',
+          "image" => 'Cargue una imagen con extensión .jpg ó .png',
         ]);
     }
 

@@ -2,7 +2,7 @@
 
 @section('content')
 <div class= "container-fluid">
-  <form method="POST" action="{{ route('products.create') }}" enctype="multipart/form-data" class="form-horizontal" class="px-3 py-3">
+  <form method="POST" action="{{ route('products.store') }}" enctype="multipart/form-data" class="form-horizontal" class="px-3 py-3">
   <article class="col-xs-12 col-md-4 offset-4">
     @csrf
     <br>
@@ -12,13 +12,12 @@
 
 <!-- Form Name -->
 <legend class="text-center"><h2>Nuevo producto</h2></legend>
-<!--{{ $errors }}-->
+
 <!-- Text input-->
 <div class="form-group">
   <label class="col-xs-12 control-label" for="text">Nombre</label>
   <div>
-		<input id="name" name="name" type="text" value="{{ old('name')}}" class="form-control input-md  @error('name') is-invalid @enderror">
-    <br>
+		<input id="name" name="name" type="text" value="{{ old('name')}}" class="form-control input-md  @error('name') is-invalid @enderror" autofocus>
     @error('name')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
@@ -31,24 +30,38 @@
 <div class="form-group">
   <label class="col-xs-12 control-label" for="text">Descripción</label>
   <div>
-		<input id="descripcion" name="descripcion" type="text" value="" class="form-control input-md">
-    <br>
-    <span><?= isset($errores["descripcion"])? $errores["descripcion"]: ""; ?></span>
+		<input id="description" name="description" type="text" value="{{ old('description')}}" class="form-control input-md @error('description') is-invalid @enderror">
+    @error('description')
+        <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </span>
+    @enderror
   </div>
 </div>
 
 <div class="form-group">
-  <select class="custom-select" name="categoria_id">
-
+  <select class="custom-select @error('category_id') is-invalid @enderror" name="category_id">
+    <option value=" ">Seleccione una Categoría</option>
+    @foreach ($categories as $category)
+        <option value="{{$category->id}}">{{$category->name}}</option>
+    @endforeach
   </select>
+  @error('category_id')
+      <span class="invalid-feedback" role="alert">
+          <strong>{{ $message }}</strong>
+      </span>
+  @enderror
 </div>
 <!-- Text input-->
 <div class="form-group">
   <label class="col-xs-12 control-label" for="text">Cantidad</label>
   <div>
-		<input id="cantidad" name="cantidad" type="integer" class="form-control input-md" value="" placeholder="En numeros...">
-    <br>
-    <span><?= isset($errores["cantidad"])? $errores["cantidad"]: ""; ?></span>
+		<input id="stock" name="stock" type="integer" class="form-control input-md @error('stock') is-invalid @enderror" value="{{ old('stock')}}" placeholder="En numeros...">
+    @error('stock')
+        <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </span>
+    @enderror
   </div>
 </div>
 
@@ -56,9 +69,12 @@
 <div class="form-group">
   <label class="col-xs-12 control-label" for="text">Precio por unidad</label>
   <div>
-		<input id="precio" name="precio" type="integer" class="form-control input-md" value="" placeholder="En numeros...">
-    <br>
-    <span><?= isset($errores["precio"])? $errores["precio"]: ""; ?></span>
+		<input id="price" name="price" type="integer" class="form-control input-md @error('price') is-invalid @enderror" value="{{ old('price')}}" placeholder="En numeros...">
+    @error('price')
+        <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </span>
+    @enderror
   </div>
 </div>
 
@@ -66,9 +82,9 @@
 <div class="form-group">
   <label class="col-xs-12 control-label" for="filebutton">Insertar foto</label>
   <div>
-    <input id="filebutton" name="filebutton"  class="input-file" type="file">
+    <input id="image" name="image"  class="input-file" type="file">
     <br>
-    <span><?= isset($errores["filebutton"])? $errores["filebutton"]: ""; ?></span>
+    <span style="font-size:12px">{{ $errors->first('image') }}</span>
   </div>
 </div>
 

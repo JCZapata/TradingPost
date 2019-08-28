@@ -16,7 +16,7 @@ class AdminProductController extends Controller
   public function create()
   {
       $categories = Category::all();
-      return view('admin.products.create');
+      return view('admin.products.create')->with('categories',$categories);
   }
   /**
  * Store a newly created resource in storage.
@@ -33,6 +33,11 @@ public function store(Request $request)
         "price" => 'required|integer',
         "stock" => "required|integer",
         "image" => "image|required",
+    ],[
+      "required" => 'El campo no puede estar vacío',
+      "unique"  => 'El producto ya existe',
+      "image" => 'El archivo debe ser una imagen',
+      "integer" => 'Este dato debe ser numérico',
     ]);
 
     $product = new Product([
@@ -46,6 +51,6 @@ public function store(Request $request)
 
     $product->save();
     //return redirect()->route('products.show',['id' => $product->id]);
-    return redirect()->route('/');
+    return redirect()->route('home');
   }
 }
