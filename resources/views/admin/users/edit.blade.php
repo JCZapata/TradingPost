@@ -27,18 +27,9 @@
                             <dt>Email</dt>
                             <dd>{{$user->email}}</dd>
                         </dl>
-                        <dl class="param param-feature">
-                            <dt>Género</dt>
-                            <dd>
-                                <select name="genre" id="genre">
-                                    <option value="{{$user->genre}}" selected>@if ($user->genre == null) Ninguno @else {{$user->genre}}   @endif</option>
-                                    @foreach ($genres as $genre)
-                                        @if ($genre != $user->genre)
-                                            <option value="{{$genre}}">{{$genre}}</option>
-                                        @endif
-                                    @endforeach
-                                </select>
-                            </dd>
+                        <dl class="item-property">
+                            <dt>Role</dt>
+                            <dd>{{$user->role}}</dd>
                         </dl>
                         <hr>
                         <dl class="item-property">
