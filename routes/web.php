@@ -18,6 +18,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth','role']], function ()
     Route::resource('/users', 'AdminUserController');
 });
 
+Route::get('/products/create', 'AdminProductController@create')->name('products.create');
+Route::post('/products/store', 'AdminProductController@store')->name('products.store');
+
 Route::group(['prefix' => 'auth'], function () {
     Route::get('/{provider}', 'Auth\LoginController@redirectToProvider');
     Route::get('/{provider}/callback', 'Auth\LoginController@handleProviderCallback');

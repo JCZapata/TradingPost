@@ -1,6 +1,6 @@
 <?php
 use App\Product;
-$products = Product::paginate(6);
+$products = Product::paginate(4);
  ?>
 
 @extends('layouts.main')
@@ -41,27 +41,33 @@ $products = Product::paginate(6);
 
   <br><br>
   <section>
-    <div class="card-deck">
+    <div id='product-container' class="container-fluid p-0">
+        <article class="container pt-3 pb-3">
+            <section class="row">
                 @forelse ($products as $product)
-                  <div class="card margin-left margin-rigth" style="max-width:280px; max-height:480px">
-                    <img src="{{Storage::url($product->image)}}" style="max-width:280px; max-height:200px" alt="">
-                      <div class="card-body">
-                        <h4 class="card-title">{{$product->name}}</h4>
-                        <h5 class="card-title">{{$product->category['name']}}</h5>
-                        <p class="card-text">{{$product->description}}</p>
-                        <p class="card-text">$ {{$product->price}}</p>
-                      </div>
-                      <div class="card-footer">
-                        <a class="mas" href="#">ver más</a>
-                      </div>
-                  </div>
+                <article class="col-md-3 col-sm-6">
+                    <section class="product-grid mb-4">
+                        <article class="product-image">
+                            <img class="pic-1" src="{{Storage::url($product->image)}}">
+                             <ul class="social">
+                                <li><a href="#" data-tip="Quick View"><i class="fa fa-search"></i></a></li>
+                            <li><a href="#" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
+                            </ul>
+                        </article>
+                        <article class="product-content">
+                            <h3 class="title"><a href="#">{{$product->name}}</a></h3>
+                            <h4 class="category">{{$product->category['name']}}</h4>
+                            <p class="price">$ {{$product->price}}</p>
+                        </article>
+                    </section>
+                </article>
                 @empty
                 <div style='height:400px' class='no-results-container d-flex container-fluid mb-5 text-white text-center'>
                     <h2 class='no-results align-self-center'>No se encontraron resultados.</h2>
                 </div>
+
                 @endforelse
-    </div>
-    <br><br>
+            </article>
         <div class='container-fluid d-flex justify-content-center'>
             {{$products->links()}}
         </div>
