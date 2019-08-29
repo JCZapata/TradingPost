@@ -13,6 +13,12 @@
 
 Route::get('/', 'HomeController@index')->name('home');
 //Este grupo de rutas controla si el usuario es administrador o no
+Route::get('/faqs', 'PagesController@faqs')->name('faqs');
+
+Route::get('/products/show/{id}', 'ProductController@show')->name('show');
+Route::get('/search', 'ProductController@search')->name('product.search');
+Route::get('/products/more/{id}', 'ProductController@more')->name('more');
+
 Route::group(['prefix' => 'admin', 'middleware' => ['auth','role']], function () {
     Route::resource('/products', 'AdminProductController');
     Route::resource('/users', 'AdminUserController');
@@ -33,6 +39,5 @@ Route::group(['prefix' => 'cart'], function() {
    Route::get('/checkout', 'CartController@checkout')->name('cart.checkout');
    Route::get('/flush', 'CartController@flush')->name('cart.flush');
 });
-
 
 Auth::routes();

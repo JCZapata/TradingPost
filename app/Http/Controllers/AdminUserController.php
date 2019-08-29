@@ -25,9 +25,8 @@ class AdminUserController extends Controller
       */
      public function edit($id)
      {
-         $genres = ['Hombre','Mujer','Otro'];
          $user = User::find($id);
-         return view('admin.users.edit',compact('user','genres'));
+         return view('admin.users.edit',compact('user'));
      }
 
      /**

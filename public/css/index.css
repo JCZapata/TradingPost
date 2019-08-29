@@ -287,3 +287,7 @@ label {
     width: 60%; }
   .totals .totals-item .totals-value {
     width: 40%; } }
+
+.transparente{
+	opacity:0.8;
+}

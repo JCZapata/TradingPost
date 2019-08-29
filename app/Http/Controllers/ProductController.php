@@ -8,11 +8,22 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-/*  public function show()
+ public function show($id)
   {
-      //$categories = category::all();
-      $products = Product::paginate(4);
-      return view('products.home')->with("products", $products)
-                                  ->with("categories", $categories);
-  }*/
+      $products = Product::where('category_id','=',$id)->paginate(8);
+      return view('products.show')->with("products", $products);
+  }
+
+  public function more($id)
+   {
+       $product = Product::find($id);
+       return view('products.more')->with("product", $product);
+   }
+
+  public function search(Request $request)
+  {
+      $input = $request->input('busqueda');
+      $products = Product::where('name','LIKE','%'.$input.'%')->paginate(8);
+      return view('products.show')->with("products", $products);
+  }
 }

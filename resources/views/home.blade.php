@@ -1,6 +1,6 @@
 <?php
 use App\Product;
-$products = Product::paginate(6);
+$products = Product::paginate(5);
  ?>
 
 @extends('layouts.main')
@@ -43,16 +43,15 @@ $products = Product::paginate(6);
   <section>
     <div class="card-deck">
                 @forelse ($products as $product)
-                  <div class="card margin-left margin-rigth" style="max-width:280px; max-height:480px">
+                  <div class="card" style="max-width:280px; max-height:480px">
                     <img src="{{Storage::url($product->image)}}" style="max-width:280px; max-height:200px" alt="">
                       <div class="card-body">
                         <h4 class="card-title">{{$product->name}}</h4>
                         <h5 class="card-title">{{$product->category['name']}}</h5>
                         <p class="card-text">{{$product->description}}</p>
-                        <p class="card-text">$ {{$product->price}}</p>
                       </div>
                       <div class="card-footer">
-                        <a class="mas" href="#">ver más</a>
+                        <a class="mas" href="{{route('more',['id' => $product->id])}}">ver más</a>
                       </div>
                   </div>
                 @empty

@@ -16,9 +16,9 @@ $categories = Category::all();
               <!-- Left Side Of Navbar -->
               <ul class="navbar-nav mr-auto">
                 <li>
-                  <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="¿Qué estas buscando?" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+                  <form class="form-inline my-2 my-lg-0" action={{route('product.search')}} method="get">
+                    <input class="form-control mr-sm-2" type="text" name="busqueda" placeholder="¿Qué estas buscando?" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" name="search-submit">Buscar</button>
                   </form>
                 </li>
                 <li class="nav-item dropdown">
@@ -27,12 +27,12 @@ $categories = Category::all();
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     @foreach ($categories as $category)
-                      <a class="dropdown-item" href="{{$category->id}}">{{$category->name}}</a>
+                      <a class="dropdown-item" href="{{route('show',['id' => $category->id])}}">{{$category->name}}</a>
                     @endforeach
                   </div>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="faq.php">Ayuda</a>
+                  <a class="nav-link" href="{{route('faqs')}}">Ayuda</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="#"><i class="fas fa-shopping-cart"></i></a>
@@ -60,7 +60,7 @@ $categories = Category::all();
                           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             @if (Auth::User()->role == 'admin')
                               <a class="dropdown-item" href="{{route('users.index')}}">Administrador de usuarios</a>
-                              <a class="dropdown-item" href="#">Administrador de productos</a>
+                              <a class="dropdown-item" href="{{route('products.index')}}">Administrador de productos</a>
                             @endif
                               <a class="dropdown-item" href="{{route('products.create')}}">Nuevo Producto</a>
                               <a class="dropdown-item" href="{{ route('logout') }}"

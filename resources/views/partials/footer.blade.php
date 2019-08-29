@@ -11,7 +11,7 @@
       <li><a href="#"> Volver arriba </a></li>
       <li><a href="#" class="margin-left"> Trabaja con nosotros </a></li>
       <li><a href="#" class="margin-left"> Términos y condiciones </a></li>
-      <li><a href="FAQ.php" class="margin-left"> Ayuda </a></li>
+      <li><a href="{{route('faqs')}}" class="margin-left"> Ayuda </a></li>
     </ul>
   </div>
 </div>
