@@ -27,12 +27,12 @@ class CartController extends Controller
   public function remove($id)
     {
        session()->pull('cart.products' . $id, "default");
-       return view('');
+       return view('cart');
     }
   public function flush(Request $request)
    {
        $request->session()->flush();
-       return redirect('');
+       return redirect('/');
    }
   public function checkout()
    {

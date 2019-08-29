@@ -52,6 +52,8 @@ $products = Product::paginate(5);
                       </div>
                       <div class="card-footer">
                         <a class="mas" href="{{route('more',['id' => $product->id])}}">ver más</a>
+                        <a href={{route('cart.add', $product->id)}} class="add-to-cart btn btn-default" type="button"><i class="fas fa-shopping-cart"></i></a>
+
                       </div>
                   </div>
                 @empty

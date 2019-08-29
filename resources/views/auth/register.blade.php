@@ -8,7 +8,7 @@
                 <div class="card-header text-center"><h4>Registrate</h4></div>
                 <!--{{ $errors }}-->
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
+                    <form class="form" method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-group row">
@@ -22,7 +22,7 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-
+                                <div id="errorName"></div>
                             </div>
                         </div>
 
@@ -37,6 +37,7 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+                                <div id="errorEmail"></div>
                             </div>
                         </div>
 
@@ -51,6 +52,7 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+                                <div id="errorPassword"></div>
                             </div>
                         </div>
 
@@ -59,6 +61,7 @@
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation">
+                                <div id="errorRePassword"></div>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -67,10 +70,11 @@
                             <div class="col-md-6">
                                 <input id="avatar" type="file" class="input-file" name="avatar" value="" autofocus>
                           <span style="font-size:12px">{{ $errors->first('avatar') }}</span>
+                          <div id="errorAvatar"></div>
                             </div>
                         </div>
                         <div class="form-group text-center">
-                          <label class="checkbox-inline "><input id="confirm" type="checkbox" class="input-file" name="confirm" > Acepto los <a href="#">Terminos de Uso</a> y <a href="#">la Politica de privacidad </a></label>
+                          <label class="checkbox-inline "><input id="confirm" type="checkbox" class="input-file" name="confirm" > Acepto los <a href="#">Términos de Uso</a> y <a href="#">la Politica de privacidad </a></label>
                         <span style="font-size:12px">{{ $errors->first('confirm') }}</span>
                         </div>
                         <div class="form-group row mb-0">
@@ -86,4 +90,5 @@
         </div>
     </div>
 </div>
+<script src="{{ '/js/register.js') }}"></script>
 @endsection

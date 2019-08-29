@@ -35,8 +35,8 @@ $categories = Category::all();
                   <a class="nav-link" href="{{route('faqs')}}">Ayuda</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#"><i class="fas fa-shopping-cart"></i></a>
-                </li>
+                       <a class="nav-link" href={{asset("cart")}}><i class="fas fa-shopping-cart">({{ isset(session('cart')['products']) ? count(session('cart')['products']) : 0 }})</i></a>
+                     </li>
               </ul>
 
               <!-- Right Side Of Navbar -->
