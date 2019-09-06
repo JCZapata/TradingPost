@@ -1,12 +1,7 @@
-window.onload = function(){
-alert('ola')
-    //let formulario = document.forms[0];
+window.onload=function(){
     let formulario = document.querySelector('.form');
     //console.log(formulario.elements);
-    formulario.elements.name.focus();
-​
-    //console.log(formulario.elements);
-
+    formulario.elements.name.focus()
     formulario.onsubmit = function(evento){
         if(!validaciones()){
             evento.preventDefault();
@@ -14,8 +9,7 @@ alert('ola')
             formulario.submit();
         }
     }
-​
-    function validaciones(){
+function validaciones(){
         //var email = formulario.elements.email;
         let {name, email,password,password_confirmation,avatar} = formulario.elements;
         //console.log("Estoy en las validaciones");
@@ -42,21 +36,20 @@ alert('ola')
               name.classList.remove('alert-danger');
               name.classList.remove('is-invalid');
               name.classList.add('is-valid');
-              formulario.elements.lastname.focus();
+              formulario.elements.email.focus();
               return true;
             }
           }
-​
-        function validateEmail(email) {
+  function validateEmail(email) {
           let re = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
           let error = document.getElementById('errorEmail');
-​
+
           if (!re.test(email.value)){
 
 
             //console.log(errorEmail);
             error.innerHTML= "Debe colocar un email válido";
-            error.addEventListener.add('alert-danger');
+            //error.addEventListener.add('alert-danger');
             email.classList.add('alert-danger');
             email.classList.add('is-invalid');
           return false
@@ -64,7 +57,7 @@ alert('ola')
           error.innerHTML= "";
           email.classList.remove('alert-danger');
           email.classList.remove('is-invalid');
-          email.classList.add('is-valid');          formulario.elements.phone.focus();
+          email.classList.add('is-valid');          formulario.elements.password.focus();
           return true;
          }
         }
@@ -84,7 +77,7 @@ alert('ola')
               return true;
             }
           }*/
-        function validatePassword(password) {
+      function validatePassword(password) {
           let re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,}$/
           let errorPassword = document.getElementById('errorPassword');
 
@@ -106,8 +99,7 @@ alert('ola')
 
 
         }
-
-        function validatePasswordConfirmation(password,repeat){
+      function validatePasswordConfirmation(password,repeat){
           //console.log(password.value);
           //console.log(repeat.value);
           errorPasswordRepeat = document.getElementById('errorRePassword');
@@ -126,7 +118,7 @@ alert('ola')
             return true;
           }
         }
-        function validateAvatar(avatar) {
+    function validateAvatar(avatar) {
             let errorAvatar = document.getElementById('errorAvatar');
             if (avatar.value.length == 0){
               errorAvatar.innerHTML = "Debe seleccionar una imagen";
@@ -142,6 +134,4 @@ alert('ola')
               return true;
             }
           }
-​
-​
 }
